@@ -1,110 +1,123 @@
-🚗 BookMyRide – Online Car Rental Management System
+# 🚗 **BookMyRide – Online Car Rental Management System**
 
-BookMyRide is a full-featured web-based car rental management system that allows users to browse cars, make bookings, and manage rentals online while providing admins with complete control over cars, bookings, customers, and reports.
+*A modern PHP + MySQL web platform for seamless car rentals.*
 
-🌐 Project Overview
+<p align="center">
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white">
+  <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
+</p>
 
-BookMyRide is designed to simplify car rentals through an intuitive interface, secure authentication, dynamic pricing, and a powerful admin panel. Built with PHP + MySQL, it ensures fast performance, responsive UI, and smooth functionality across all devices.
+---
 
-🛠️ Tech Stack
-Frontend
+## 🚀 **Overview**
 
-HTML5, CSS3, JavaScript
+**BookMyRide** is a complete car rental management system built for both **customers** and **administrators**.
+It provides smooth car browsing, quick bookings, dynamic pricing, secure authentication, and full backend control.
 
-Bootstrap 5 (fully responsive)
+The project focuses on clean UI, responsive design, and secure backend architecture.
 
-Font Awesome Icons
+---
 
-Custom CSS for each page
+## ✨ **Why BookMyRide?**
 
-Backend
+✔ Fast & responsive
+✔ Clean modern UI
+✔ Secure authentication
+✔ Real-time booking price calculation
+✔ Full admin control
+✔ Built with industry-standard tech
 
-PHP (Procedural)
+---
 
-MySQL (with MySQLi)
+## 🛠️ **Tech Stack**
 
-PHP Sessions for authentication
+### **Frontend**
 
-Secure password hashing (password_hash / password_verify)
+* HTML5
+* CSS3 + Custom Styles
+* JavaScript
+* Bootstrap 5
+* Font Awesome Icons
 
-✨ Key Features
-👤 User Features
+### **Backend**
 
-User Registration & Login
+* PHP (Procedural)
+* MySQL (MySQLi)
+* PHP Sessions
+* Password hashing & validation
 
-Role-based redirection (User / Admin)
+---
 
-Responsive home page with available cars
+## 🔥 **Key Features**
 
-Car details and availability status
+### 👥 **User Features**
 
-Full booking system with:
+* Account Registration & Login
+* Role-based redirection (User / Admin)
+* Browse available cars
+* View car details
+* Full booking system:
 
-Pickup/Drop dates
+  * Pickup & Drop dates
+  * Locations
+  * Personal info
+  * Payment method
+* **Dynamic Pricing**
 
-Locations
+  * First 3 days → normal price
+  * After 3 days → **10% discount**
+* Real-time validation (JS)
+* Password reset via email
+* Testimonials & Contact pages
 
-Personal info
+---
 
-Payment method
+### 🛡️ **Admin Features**
 
-Dynamic pricing calculation
+* Powerful dashboard
+* Manage cars (Add / Edit / View)
+* Manage bookings
+* Manage customers
+* Generate reports
+* Strict admin-only access
 
-First 3 days → base price
+---
 
-After 3 days → 10% discount
+## 🗄️ **Database Structure**
 
-Real-time form validation
+**Database Name:** `bookmyride`
 
-Password reset via email
+| Table        | Description                       |
+| ------------ | --------------------------------- |
+| `users`      | User accounts (admin + customers) |
+| `cars`       | Car inventory and details         |
+| `bookings`   | All booking records               |
+| `categories` | Car categories                    |
+| `payments`   | Payment details                   |
 
-Testimonials, Contact, Cars listing pages
+Includes sample cars like **Ertiga, Swift, Innova, Thar, Fortuner**, etc.
 
-🛡️ Admin Features
+---
 
-Admin Dashboard with statistics
+## 📁 **Project Structure**
 
-Manage Cars (Add / View / Update)
-
-Manage Bookings (All Bookings page)
-
-Manage Users
-
-Generate Reports
-
-Role-based access (only admins allowed)
-
-🗄️ Database Structure
-
-Database: bookmyride
-
-Tables:
-
-users (admin + users)
-
-cars
-
-bookings
-
-categories
-
-payments
-
-Includes major car models: Ertiga, Swift, Innova, Thar, Fortuner, etc.
-
-📁 Project File Structure
+```
 /
-│── index.php
-│── booking.php
-│── login.php
-│── register.php
-│── cars.php
-│── contact.php
-│── testimonials.php
-│── db.php
-│── bookmyride.sql
+├── index.php
+├── booking.php
+├── login.php
+├── register.php
+├── cars.php
+├── contact.php
+├── testimonials.php
+├── db.php
+├── bookmyride.sql
 │
-├── /admin
+├── admin/
 │   ├── dashboard_admin.php
 │   ├── Add_car.php
 │   ├── View_cars.php
@@ -112,64 +125,67 @@ Includes major car models: Ertiga, Swift, Innova, Thar, Fortuner, etc.
 │   ├── customers.php
 │   └── report.php
 │
-├── /assets
-│   ├── /css (index.css, booking.css, admin.css)
-│   └── /images
+├── assets/
+│   ├── css/
+│   └── images/
 │
-└── /includes
+└── includes/
     ├── header.php
     └── footer.php
+```
 
-🔒 Security Implementations
+---
 
-Password hashing
+## 🔐 **Security Features**
 
-Session-based authentication
+* **Password hashing**
+* **Session-based login control**
+* **Sanitized inputs**
+* **Admin-only protected routes**
 
-Input sanitization
+---
 
-Admin restrictions
+## 🚀 **How to Run Locally**
 
-🚀 User Flow
+### 1️⃣ Clone the repository
 
-User registers or logs in
+```sh
+git clone https://github.com/yourusername/bookmyride.git
+```
 
-Browses available cars
+### 2️⃣ Move project to XAMPP
 
-Selects & fills the booking form
+Place folder inside:
 
-JavaScript calculates rental cost
+```
+xampp/htdocs/
+```
 
-Booking submitted → stored in database
+### 3️⃣ Start XAMPP
 
-Admin manages bookings and cars
+Start **Apache** + **MySQL**
 
-📦 How to Run Locally
+### 4️⃣ Import the database
 
-Download or clone the repository
+Use phpMyAdmin → Import → select `bookmyride.sql`
 
-Start XAMPP → Apache + MySQL
-
-Import bookmyride.sql into phpMyAdmin
-
-Place project folder in:
-
-htdocs/
-
+### 5️⃣ Run project
 
 Visit:
 
+```
 http://localhost/bookmyride/
+```
 
-📝 Author
+---
 
-Developed by Lathiya Harshal
-IT Student | Full-Stack Learner | Freelance DeveDeveloper 
+## 👨‍💻 **Developer**
 
-![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+**Lathiya Harshal**
+IT Student | Full-Stack Learner | Freelance Developer
+
+---
+
+## ⭐ **Support the Project**
+
+If you like this project, give it a **star ⭐ on GitHub** — it motivates me!
