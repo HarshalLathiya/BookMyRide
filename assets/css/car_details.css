@@ -1,0 +1,89 @@
+
+    :root{
+      --primary: #5d5d81;
+      --accent: #8a8aac;
+      --muted: #9aa0a6;
+      --bg: #f2f3f7;
+      --card: #ffffff;
+    }
+    body{font-family:'Poppins',system-ui,Arial,sans-serif;margin:0;background:var(--bg);color:#222;}
+    .wrap{max-width:1200px;margin:80px auto 60px;padding:18px;}
+    .card{background:var(--card);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.08);overflow:hidden;}
+
+    /* Gallery */
+    .gallery{position:relative;}
+    .hero {
+    width: 100%;
+    height: 280px;   /* smaller */
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+    .thumbs{
+      display:flex;gap:12px;padding:14px;background:linear-gradient(180deg,#fbfbfd,#fff);
+      justify-content:center;flex-wrap:wrap;
+    }
+    .thumbs img{width:120px;height:80px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent;}
+    .thumbs img.active{border-color:var(--primary);box-shadow:0 6px 18px rgba(92,80,140,0.12);}
+
+    /* content area two columns */
+    .content{display:grid;grid-template-columns: 1fr 340px;gap:30px;padding:30px;}
+    @media(max-width:1000px){ .content{grid-template-columns:1fr;} .hero{height:300px;} }
+
+    .left h1{font-size:34px;margin:0 0 12px;color:#222;font-weight:700;}
+    .meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;color:var(--muted);font-weight:600;}
+    .meta .tag{background:#fafafa;padding:8px 12px;border-radius:999px;border:1px solid rgba(0,0,0,0.04);}
+
+    /* specs grid */
+    .spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:18px;}
+    .spec{background:#fbfbff;border-radius:12px;padding:16px;text-align:center;border:1px solid rgba(93,93,129,0.04);}
+    .spec i{font-size:22px;color:var(--primary);display:block;margin-bottom:8px;}
+    .spec .label{font-size:13px;color:var(--muted);margin-bottom:6px;}
+    .spec .val{font-weight:700;color:#333;}
+
+    /* description */
+    .desc{margin-top:24px;color:#444;line-height:1.6;font-size:15px;}
+
+    /* right price card */
+    .price-card{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-radius:12px;padding:22px;position:sticky;top:110px;height:fit-content;}
+    .price-card h3{margin:0;font-size:22px;letter-spacing:0.4px;}
+    .price-card .price{font-size:28px;font-weight:800;margin-top:8px;}
+    .price-card .per{font-weight:500;font-size:14px;color:rgba(255,255,255,0.9);margin-bottom:18px;}
+
+    .book-btn{display:inline-block;padding:12px 26px;border-radius:50px;background:#fff;color:var(--primary);font-weight:700;text-decoration:none;box-shadow:0 8px 25px rgba(0,0,0,0.12);transition:transform .18s}
+    .book-btn:hover{transform:translateY(-3px)}
+
+    .status{margin-top:12px;font-weight:700}
+    .status.available{color:#00a86b}
+    .status.booked{color:#d23f3f}
+
+    /* small features list */
+    .features{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;}
+    .feature-pill{background:#f8f8ff;padding:8px 12px;border-radius:999px;color:var(--muted);border:1px solid rgba(0,0,0,0.04);font-weight:600}
+
+    /* footerish */
+    .info-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:22px;color:var(--muted);font-size:14px;}
+    .info-row .item{display:flex;gap:8px;align-items:center}
+
+    /* responsive tweaks */
+    @media(max-width:640px){
+      .thumbs img{width:86px;height:60px}
+      .hero{height:220px}
+      .price-card{position:relative;top:0}
+    }
+    .car-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.car-main-image {
+    width: 70%;
+    max-width: 600px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    object-fit: cover;
+}

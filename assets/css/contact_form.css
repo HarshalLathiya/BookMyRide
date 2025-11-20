@@ -1,0 +1,114 @@
+body {
+    font-family: Poppins, sans-serif;
+    background-color: #f2f3f7;
+    margin: 0;
+    padding-top: 120px;
+}
+
+/* MAIN DIV */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1300px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* CONTACT CARDS */
+.contact-card {
+    background: #fff;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.contact-card h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #6a5acd;
+    display: inline-block;
+    padding-bottom: 6px;
+}
+
+.contact-card p {
+    color: #444;
+    font-size: 16px;
+    margin: 12px 0;
+}
+
+.contact-card i {
+    color: #6a5acd;
+    margin-right: 10px;
+}
+
+/* INPUT FORM */
+form label {
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 15px;
+    transition: .3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: #6a5acd;
+}
+
+/* BUTTON */
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #6a5acd, #8a74d4);
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* MAP BOX */
+.map-container {
+    margin-top: 25px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 260px;
+    border: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* FOOTER CENTER */
+.footer {
+    text-align: center !important;
+}
+.social-links {
+    justify-content: center !important;
+}

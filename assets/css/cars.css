@@ -1,0 +1,124 @@
+
+        body {
+            background: #f3f4f7;
+            font-family: 'Poppins', sans-serif;
+            padding-top: 120px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2b2b2b;
+        }
+
+        .cars-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .car-card {
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: 0.35s ease;
+            border: 1px solid #eee;
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .car-body {
+            padding: 20px 25px;
+        }
+
+        .car-body h5 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #5d5d81;
+            font-weight: 600;
+        }
+
+        .car-price {
+            font-size: 18px;
+            color: #2b8f3a;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .status span {
+            font-weight: bold;
+        }
+
+        .btn-book {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+            transition: .3s ease;
+            cursor: pointer;
+            background: linear-gradient(135deg, #5d5d81, #8a8aac);
+            color: #fff;
+        }
+
+        .btn-book:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-disabled {
+            background: #9b9b9b !important;
+            cursor: not-allowed;
+            box-shadow: none !important;
+        }
+        .footer {
+    text-align: center;
+    padding: 40px 0;
+    background: transparent;
+}
+
+.footer p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #444;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a {
+    font-size: 24px;
+    color: #555;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: #5d5d81;
+    transform: translateY(-3px);
+}
