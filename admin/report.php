@@ -9,7 +9,7 @@ include 'db.php';
 
 // Fetch all booking + car details
 $sql = "SELECT b.booking_id, b.full_name, b.email, b.phone, 
-        c.name AS car_name, c.category, c.price_per_day,
+        c.name AS car_name, c.category, c.price_per_km,
         b.pickup_date, b.drop_date, b.pickup_location, b.drop_location, b.payment_method
         FROM bookings b
         LEFT JOIN cars c ON b.car_id = c.car_id
@@ -20,7 +20,7 @@ $result = mysqli_query($conn, $sql);
 // Calculate summary statistics
 $summary_sql = "SELECT 
     COUNT(*) as total_bookings,
-    SUM(c.price_per_day * DATEDIFF(b.drop_date, b.pickup_date)) as total_revenue,
+    SUM(c.price_per_km * DATEDIFF(b.drop_date, b.pickup_date)) as total_revenue,
     COUNT(DISTINCT b.car_id) as unique_cars
     FROM bookings b
     LEFT JOIN cars c ON b.car_id = c.car_id";
@@ -305,7 +305,7 @@ $summary = mysqli_fetch_assoc($summary_result);
                                 <td>".htmlspecialchars($row['phone'])."</td>
                                 <td>".htmlspecialchars($row['car_name'])."</td>
                                 <td>".htmlspecialchars($row['category'])."</td>
-                                <td>₹".$row['price_per_day']."</td>
+<td>₹".$row['price_per_km']."</td>
                                 <td>".$row['pickup_date']."</td>
                                 <td>".$row['drop_date']."</td>
                                 <td>".htmlspecialchars($row['pickup_location'])."</td>

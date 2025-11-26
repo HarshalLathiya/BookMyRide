@@ -49,7 +49,10 @@ $cars = $stmt->get_result();
             <div class="car-body">
                 <h5><?php echo htmlspecialchars($car['name']); ?></h5>
 
-                <p class="car-price">₹ <?php echo $car['price_per_day']; ?> / day</p>
+                <!--<p class="car-price">₹ <?php echo $car['price_per_day']; ?> / day</p>-->
+                <p class="car-price">₹ <?php echo $car['price_per_km']; ?> / km</p>
+
+                
 
                 <p class="status">
                     Status:

@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include("includes/header.php");
 // Include the database connection
 include 'db.php';
@@ -46,36 +50,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pickup_location = trim($_POST['pickup_location'] ?? '');
     $drop_location = trim($_POST['drop_location'] ?? '');
     $payment_method = trim($_POST['payment_method'] ?? ''); // new
+    $estimated_km = trim($_POST['estimated_km'] ?? '');
 
     // Validation
-    if ($pickup_date > $drop_date) {
-        $error = "❌ Drop date must be after pickup date.";
+    if (!is_numeric($estimated_km) || $estimated_km <= 0) {
+        $error = "❌ Estimated kilometers must be a positive number.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "❌ Invalid email format.";
     } elseif (empty($payment_method)) {
         $error = "❌ Please select a payment method.";
     } else {
-        // Insert booking with payment_method
+        // Insert booking with payment_method and estimated_km
         $stmt = $conn->prepare("INSERT INTO bookings 
-            (car_id, full_name, email, phone, car_type, pickup_date, drop_date, pickup_location, drop_location, payment_method) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            (car_id, full_name, email, phone, car_type, pickup_date, drop_date, pickup_location, drop_location, payment_method, estimated_km) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         if (!$stmt) die("❌ SQL Prepare Error (INSERT): " . $conn->error);
 
-        $stmt->bind_param("isssssssss", $car_id, $full_name, $email, $phone, $car_type, $pickup_date, $drop_date, $pickup_location, $drop_location, $payment_method);
+        $stmt->bind_param("isssssssssi", $car_id, $full_name, $email, $phone, $car_type, $pickup_date, $drop_date, $pickup_location, $drop_location, $payment_method, $estimated_km);
 
         if (!$stmt->execute()) {
             die("❌ SQL Execute Error (INSERT): " . $stmt->error);
         }
 
+
         $booking_id = $stmt->insert_id; // get booking id
         $stmt->close();
 
-        // Insert payment record
+        // Insert payment record with amount calculated per km
         $stmt = $conn->prepare("INSERT INTO payments (booking_id, amount, method, status) VALUES (?, ?, ?, ?)");
         if (!$stmt) die("❌ SQL Prepare Error (INSERT PAYMENT): " . $conn->error);
 
-        // Calculate amount based on days and price
-        $days = (strtotime($drop_date) - strtotime($pickup_date)) / (60 * 60 * 24) + 1;
+        // Calculate amount based on estimated km and price_per_day
+        $pickup = new DateTime($pickup_date);
+        $drop = new DateTime($drop_date);
+        $days = $drop->diff($pickup)->days;
         $amount = $days * $car['price_per_day'];
 
         $status = 'pending';
@@ -96,7 +104,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $stmt->close();
 
-        $success = "✅ Booking confirmed! Thank you for choosing BookMyRide.";
+        // Redirect to booking confirmation page after successful booking
+        header("Location: booking_success.php?booking_id=" . $booking_id);
+        exit();
     }
 }
 ?>

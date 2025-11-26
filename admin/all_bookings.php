@@ -10,7 +10,7 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
 include 'db.php';
 
 // Fetch All Bookings with car details
-$bookings = mysqli_query($conn, "SELECT b.*, c.name AS car_name, c.price_per_day FROM bookings b LEFT JOIN cars c ON b.car_id = c.car_id ORDER BY b.booking_id DESC");
+$bookings = mysqli_query($conn, "SELECT b.*, c.name AS car_name, c.price_per_km FROM bookings b LEFT JOIN cars c ON b.car_id = c.car_id ORDER BY b.booking_id DESC");
 
 // Calculate summary statistics
 $summary_sql = "SELECT

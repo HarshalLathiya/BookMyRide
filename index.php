@@ -63,7 +63,7 @@ foreach($carData as $car => $image){
               <p>Drive with style and unmatched comfort.</p>';
 
     if($status['status'] === 'available'){
-        echo '<a href="booking.php?car='.urlencode($car).'">
+        echo '<a href="booking.php?car_id='.$status['car_id'].'">
                 <button class="btn">Book Now</button>
               </a>';
     } else {

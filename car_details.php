@@ -152,11 +152,11 @@ $available = ($status === 'available');
       <div style="padding:28px;">
         <div class="price-card">
           <h3>Rent this car</h3>
-          <div class="price">₹ <?= esc($car['price_per_day'] ?? '0') ?></div>
-          <div class="per">per day</div>
+          <div class="price">₹ <?= esc($car['price_per_km'] ?? '0') ?></div>
+          <div class="per">per km</div>
 
           <?php if($available): ?>
-            <a class="book-btn" href="booking.php?car=<?= urlencode($car['name']) ?>"><i class="fas fa-calendar-plus" style="margin-right:8px"></i> Book Now</a>
+<a class="book-btn" href="booking.php?car_id=<?= intval($car['car_id']) ?>"><i class="fas fa-calendar-plus" style="margin-right:8px"></i> Book Now</a>
             <div class="status available">Available — Book instantly</div>
           <?php else: ?>
             <div class="book-btn" style="background:#ddd;color:#666;cursor:not-allowed">Already Booked</div>
@@ -179,5 +179,12 @@ $available = ($status === 'available');
 </div>
 
 <?php include 'includes/footer.php'; ?>
+
+<style>
+  /* Center the footer content */
+  footer {
+    text-align: center;
+  }
+</style>
 </body>
 </html>

@@ -169,6 +169,15 @@ session_start();
       </button>
 
       <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav me-auto align-items-center">
+          <?php if(basename($_SERVER['PHP_SELF']) != 'index.php'): ?>
+          <li class="nav-item">
+            <a href="javascript:history.back()" class="nav-link" title="Go Back">
+              <i class="fas fa-arrow-left"></i> Back
+            </a>
+          </li>
+          <?php endif; ?>
+        </ul>
         <ul class="navbar-nav ms-auto align-items-center">
           <?php if(isset($_SESSION['user_id'])): ?>
           <li class="nav-item">

@@ -91,7 +91,7 @@ $result = $conn->query("SELECT * FROM cars ORDER BY created_at DESC");
               <th>Image</th>
               <th>Name</th>
               <th>Category</th>
-              <th>Price per Day</th>
+              <th>Price per Km</th>
               <th>Status</th>
               <th>Added On</th>
               <th>Actions</th>
@@ -104,7 +104,7 @@ $result = $conn->query("SELECT * FROM cars ORDER BY created_at DESC");
                 <td><img src="../assets/images/<?php echo $car['image']; ?>" alt="<?php echo $car['name']; ?>" width="100" style="border-radius: 8px;"></td>
                 <td><?php echo htmlspecialchars($car['name']); ?></td>
                 <td><?php echo $car['category']; ?></td>
-                <td>₹<?php echo number_format($car['price_per_day'], 2); ?></td>
+                <td>₹<?php echo number_format($car['price_per_km'], 2); ?></td>
                 <td>
                   <span class="badge <?php echo $car['status'] == 'available' ? 'badge-success' : 'badge-danger'; ?>">
                     <?php echo $car['status']; ?>

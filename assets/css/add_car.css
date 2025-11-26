@@ -1,0 +1,176 @@
+/* -----------------------------------------------------
+   GLOBAL STYLES
+----------------------------------------------------- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f6fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.admin-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Main Content Box */
+.main-content {
+    background: #fff;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+/* -----------------------------------------------------
+   BACK BUTTON
+----------------------------------------------------- */
+.back-btn {
+    background: #4b4bff;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #3030d3;
+    transform: translateX(-3px);
+}
+
+.back-btn:active {
+    transform: scale(0.97);
+}
+
+/* Back button wrapper */
+.page-back-wrap {
+    margin: 20px 0 0 20px;
+}
+
+/* -----------------------------------------------------
+   SECTION HEADER
+----------------------------------------------------- */
+.section-header h2 {
+    margin: 0 0 25px 0;
+    font-weight: 600;
+    font-size: 26px;
+}
+
+/* -----------------------------------------------------
+   MESSAGES
+----------------------------------------------------- */
+.message {
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.message-success {
+    background: #e7ffe8;
+    color: #0a8a1f;
+    border-left: 5px solid #20c933;
+}
+
+.message-error {
+    background: #ffe7e7;
+    color: #c62828;
+    border-left: 5px solid #ff3b3b;
+}
+
+/* -----------------------------------------------------
+   FORM
+----------------------------------------------------- */
+.form-container {
+    margin-top: 10px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.form-control,
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.2s;
+    background: #fbfbfb;
+}
+
+.form-control:focus,
+textarea:focus {
+    border-color: #4b4bff;
+    box-shadow: 0 0 4px rgba(76, 76, 255, 0.4);
+    outline: none;
+    background: #fff;
+}
+
+/* Full width fields */
+.full-width {
+    grid-column: 1 / -1;
+}
+
+/* -----------------------------------------------------
+   BUTTON
+----------------------------------------------------- */
+.btn-primary {
+    background: #4b4bff;
+    color: #fff;
+    padding: 13px 28px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #3030d3;
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: scale(0.97);
+}
+
+/* -----------------------------------------------------
+   RESPONSIVE HANDLING
+----------------------------------------------------- */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-back-wrap {
+        margin-left: 10px;
+    }
+    
+    .section-header h2 {
+        font-size: 22px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,7 +1,7 @@
 <?php
 $page_title = 'BookMyRide - Book Now';
 include("includes/header.php");
-$selectedCar = isset($_GET['car']) ? htmlspecialchars($_GET['car']) : '';
+$selectedCar = isset($_GET['car_id']) ? intval($_GET['car_id']) : 0;
 ?>
   <div class="booking-container">
     <div class="booking-image"></div>
@@ -14,7 +14,7 @@ $selectedCar = isset($_GET['car']) ? htmlspecialchars($_GET['car']) : '';
       
       <div class="message" id="message"></div>
       
-      <form action="db_booking_form.php" method="POST" id="bookingForm">
+<form action="Book_car.php<?php if(isset($_GET['car_id'])) { echo '?car_id=' . intval($_GET['car_id']); } ?>" method="POST" id="bookingForm">
         <div class="form-grid">
           <div class="form-group">
             <label for="full_name">Full Name</label>
@@ -44,33 +44,45 @@ $selectedCar = isset($_GET['car']) ? htmlspecialchars($_GET['car']) : '';
             <label for="car_type">Car Type</label>
             <div class="input-icon">
               <i class="fas fa-car"></i>
-              <select id="car_type" name="car_type" required>
+<select id="car_type" name="car_type" required>
                 <option value="">-- Select car type --</option>
-                <option value="Ertiga" <?= ($selectedCar == 'Ertiga' ? 'selected' : '') ?>>Ertiga</option>
-                <option value="Innova" <?= ($selectedCar == 'Innova' ? 'selected' : '') ?>>Innova</option>
-                <option value="Swift" <?= ($selectedCar == 'Swift' ? 'selected' : '') ?>>Swift</option>
-                <option value="Verna" <?= ($selectedCar == 'Verna' ? 'selected' : '') ?>>Verna</option>
-                <option value="Fortuner" <?= ($selectedCar == 'Fortuner' ? 'selected' : '') ?>>Fortuner</option>
-                <option value="Thar" <?= ($selectedCar == 'Thar' ? 'selected' : '') ?>>Thar</option>
+                <?php
+                $car_types = ['Ertiga', 'Innova', 'Swift', 'Verna', 'Fortuner', 'Thar'];
+                $car_id_to_name = [];
+                foreach ($car_types as $car_name) {
+                    // We cannot get car id here without DB query so just mark none selected, user picks car.
+                    // Alternatively can be simplified to:
+                    $selected = ($selectedCar && $car_name == $selectedCar) ? 'selected' : '';
+                    echo "<option value=\"$car_name\" $selected>$car_name</option>";
+                }
+                ?>
               </select>
             </div>
           </div>
           
-          <div class="form-group">
+        <div class="form-group">
+          <label for="estimated_km">Estimated Kilometers</label>
+          <div class="input-icon">
+            <i class="fas fa-road"></i>
+            <input type="number" id="estimated_km" name="estimated_km" min="1" required placeholder="Enter estimated kilometers">
+          </div>
+        </div>
+        
+        <div class="form-group">
             <label for="pickup_date">Pickup Date</label>
             <div class="input-icon">
-              <i class="fas fa-calendar-alt"></i>
-              <input type="date" id="pickup_date" name="pickup_date" required>
+                <i class="fas fa-calendar-alt"></i>
+                <input type="date" id="pickup_date" name="pickup_date" required>
             </div>
-          </div>
-          
-          <div class="form-group">
+        </div>
+        
+        <div class="form-group">
             <label for="drop_date">Drop Date</label>
             <div class="input-icon">
-              <i class="fas fa-calendar-alt"></i>
-              <input type="date" id="drop_date" name="drop_date" required>
+                <i class="fas fa-calendar-alt"></i>
+                <input type="date" id="drop_date" name="drop_date" required>
             </div>
-          </div>
+        </div>
           
           <div class="form-group full-width">
             <label for="pickup_location">Pickup Location</label>
@@ -160,46 +172,31 @@ $selectedCar = isset($_GET['car']) ? htmlspecialchars($_GET['car']) : '';
       }
     });
     
-    // Calculate price when dates or car type changes
-    document.getElementById('pickup_date').addEventListener('change', calculatePrice);
-    document.getElementById('drop_date').addEventListener('change', calculatePrice);
-    document.getElementById('car_type').addEventListener('change', calculatePrice);
-    
-    function calculatePrice() {
-      const pickupDate = new Date(document.getElementById('pickup_date').value);
-      const dropDate = new Date(document.getElementById('drop_date').value);
-      const carType = document.getElementById('car_type').value;
-      
-      if (!pickupDate || !dropDate || !carType || pickupDate >= dropDate) {
-        document.getElementById('calculationBox').style.display = 'none';
-        return;
-      }
-      
-      // Calculate number of days
-      const timeDiff = dropDate - pickupDate;
-      const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1; // Include both start and end day
-      
-      if (days < 1) {
-        document.getElementById('calculationBox').style.display = 'none';
-        return;
-      }
-      
-      // Get car price
-      const dailyRate = carPrices[carType] || 0;
-      
-      // Calculate costs (first 3 days at base rate, additional days at discounted rate)
-      const baseDays = Math.min(days, 3);
-      const additionalDays = Math.max(0, days - 3);
-      const baseCost = baseDays * dailyRate;
-      const additionalCost = additionalDays * dailyRate * 0.9; // 10% discount for additional days
-      const totalCost = baseCost + additionalCost;
-      
-      // Update calculation box
-      document.getElementById('baseRate').textContent = `₹${baseCost}`;
-      document.getElementById('additionalDays').textContent = `${additionalDays} days × ₹${Math.round(dailyRate * 0.9)}`;
-      document.getElementById('totalAmount').textContent = `₹${Math.round(totalCost)}`;
-      document.getElementById('calculationBox').style.display = 'block';
-    }
+document.getElementById('estimated_km').addEventListener('input', calculatePrice);
+document.getElementById('car_type').addEventListener('change', calculatePrice);
+
+function calculatePrice() {
+  const estimatedKm = parseFloat(document.getElementById('estimated_km').value);
+  const carType = document.getElementById('car_type').value;
+  
+  if (!estimatedKm || estimatedKm <= 0 || !carType) {
+    document.getElementById('calculationBox').style.display = 'none';
+    return;
+  }
+  
+  // Get car price per km
+  const pricePerKm = carPrices[carType] || 0;
+  
+  // Calculate total cost
+  const totalCost = estimatedKm * pricePerKm;
+  
+  // Update calculation box
+  document.getElementById('baseRate').textContent = `₹${totalCost.toFixed(2)}`;
+  document.getElementById('additionalDays').textContent = '';
+  document.getElementById('totalAmount').textContent = `₹${totalCost.toFixed(2)}`;
+  document.getElementById('calculationBox').style.display = 'block';
+}
+
     
     function showMessage(text, type) {
       const messageDiv = document.getElementById('message');
